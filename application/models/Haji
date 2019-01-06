@@ -1,0 +1,24 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class m_adminLayanan extends CI_Model {
+
+	function input_data($data,$table){
+		$this->db->insert($table,$data);
+		$this->session->set_flashdata('sukses',"Data Berhasil Ditambahkan");
+	}
+	function edit($data, $id){
+        $this->db->where('id', $_POST['id']);
+        $this->db->update('haji',$data);
+        $this->session->set_flashdata('sukses',"Data Berhasil Diedit");
+        return TRUE;
+    }
+
+    function hapus($id){
+        $this->db->where('id', $id);
+        $this->db->delete('haji');
+        $this->session->set_flashdata('sukses',"Data Berhasil Dihapus");
+      return TRUE;
+    }
+
+}
